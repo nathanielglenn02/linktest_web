@@ -1,0 +1,56 @@
+.connectionContainer {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.07);
+    padding: 32px 24px;
+    max-width: 700px;
+    margin: 32px auto;
+}
+
+.connectionTitle {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1877f2;
+    margin-bottom: 24px;
+    letter-spacing: 1px;
+}
+
+.connectionGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px;
+}
+
+.connectionCard {
+    background: #f7fafd;
+    border-radius: 12px;
+    padding: 18px 20px;
+    box-shadow: 0 1px 6px rgba(24, 119, 242, 0.07);
+    border: 1px solid #e3e9f3;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.connectionPic {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #1877f2;
+}
+
+.connectionName {
+    font-weight: 600;
+    color: #1877f2;
+}
+
+@media (max-width: 600px) {
+    .connectionContainer {
+        padding: 16px 4px;
+    }
+
+    .connectionTitle {
+        font-size: 1.3rem;
+    }
+}

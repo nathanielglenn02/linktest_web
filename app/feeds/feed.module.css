@@ -1,0 +1,32 @@
+.feedContainer {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.07);
+    padding: 32px 24px;
+    max-width: 700px;
+    margin: 32px auto;
+}
+
+.feedTitle {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1877f2;
+    margin-bottom: 24px;
+    letter-spacing: 1px;
+}
+
+.statusList {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+@media (max-width: 600px) {
+    .feedContainer {
+        padding: 16px 4px;
+    }
+
+    .feedTitle {
+        font-size: 1.3rem;
+    }
+}
