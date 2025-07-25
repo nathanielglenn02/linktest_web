@@ -1,16 +1,13 @@
-// app/page.tsx
-import Link from 'next/link';
-import FeedPage from './feeds/page'; // Mengimpor komponen Feed
+import { cookies } from 'next/headers';
+import { redirect } from 'next/navigation';
 
-const HomePage = () => {
-    return (
-        <>
-            <h1 className="text-xl font-bold mb-4">Welcome to LinkTest</h1>
+export default async function HomePage() {
+    const cookieStore = await cookies();
+    const token = cookieStore.get('token');
 
-            {/* Halaman Feed */}
-            <FeedPage />
-        </>
-    );
-};
+    if (!token) {
+        redirect('/login'); // jika belum login, arahkan ke login
+    }
 
-export default HomePage;
+    redirect('/feeds'); // jika sudah login, arahkan ke feeds
+}
