@@ -3,40 +3,23 @@
 import { useEffect, useState } from 'react';
 import { getUserById } from '@/lib/api/user';
 import type { User } from '@/lib/types/user';
+import { getUserIdFromToken, getTokenFromCookie } from '@/lib/utils/auth';
 
 export default function SidebarLeft() {
     const [user, setUser] = useState<User | null>(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const token = getToken();
-        const userId = getUserIdFromToken(token);
+        const token = getTokenFromCookie();
+        const userId = token ? getUserIdFromToken(token) : null;
 
         if (!token || !userId) return;
 
         getUserById(userId)
-            .then((res) => setUser(res))
-            .catch(() => { })
+            .then(setUser)
+            .catch(console.error)
             .finally(() => setLoading(false));
     }, []);
-
-    const getToken = () => {
-        const cookieStr = document.cookie;
-        const cookies = Object.fromEntries(cookieStr.split('; ').map(c => {
-            const [key, val] = c.split('=');
-            return [key, decodeURIComponent(val)];
-        }));
-        return cookies.token;
-    };
-
-    const getUserIdFromToken = (token: string): number | null => {
-        try {
-            const payload = JSON.parse(atob(token.split('.')[1]));
-            return payload.id || null;
-        } catch {
-            return null;
-        }
-    };
 
     return (
         <div>
